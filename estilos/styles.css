@@ -1,0 +1,102 @@
+@charset "UTF-8";
+
+:root{
+    --corHeader: #ededed;
+    --corTitulo: #eff4fc;
+    --corFundo: #f5f5f5;
+
+    --arimo: "Arimo", sans-serif;
+    --anton-regular: "Anton", sans-serif;
+}
+
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: var(--arimo);
+}
+body{
+    background-color: var(--corFundo);
+    box-sizing: border-box;
+}
+
+header{
+    background-color: var(--corHeader);
+    float: right;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px;
+    padding: 15px;
+    width: 70vw;
+    border-radius: 5px;
+}
+header > input{
+    border: none;
+    background-color: var(--corFundo);
+    padding: 10px;
+    border-radius: 5px;
+}
+header > section{
+    width: 300px;
+    display: flex;
+    justify-content: space-around;
+}
+header > section > .userLogado{
+    padding: 5px 20px 5px 0px;
+    border-right: 2px solid rgba(128, 128, 128, 0.218);
+}
+header > section > button.logout{
+    border: none;
+    background-color: transparent;
+    color: gray;
+    font-weight: 700;
+}
+
+aside{
+    background-color: white;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.222);
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    height: 100vw;
+}
+aside > h1{
+    background-color: var(--corTitulo);
+    padding: 0px 15px;
+    font-size: 0.7em;
+    width: 250px;
+}
+aside > h1.logo::before{
+    content: 'OC ';
+    font-family: var(--anton-regular);
+    font-size: 40px;
+    font-weight: bolder;
+    vertical-align: middle;
+}
+
+nav{
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+    text-align: left;
+    margin-top: 50px;
+}
+nav > a{
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.808);
+    padding: 6px;
+    vertical-align: middle;
+    font-weight: 500;
+}
+nav > a > span{
+    vertical-align: middle;
+}
+a.cadastro{
+    border-top: 2px solid rgba(128, 128, 128, 0.218);
+    border-bottom: 2px solid rgba(128, 128, 128, 0.218);
+    width: 250px;
+}
+
+.material-symbols-outlined{
+    color: rgba(0, 0, 0, 0.559);
+}
