@@ -5,30 +5,38 @@
     --corTitulo: #eff4fc;
     --corFundo: #f5f5f5;
 
-    --arimo: "Arimo", sans-serif;
     --anton-regular: "Anton", sans-serif;
+    --roboto: "Roboto", sans-serif;
 }
 
 *{
     margin: 0px;
     padding: 0px;
-    font-family: var(--arimo);
+    font-family: var(--roboto);
 }
 body{
     background-color: var(--corFundo);
     box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 350px auto;
+    grid-template-rows: 100px auto;
+    grid-template-areas: 
+    "aside header header header" 
+    "aside main main main"
+    "aside main main main";
 }
 
 header{
     background-color: var(--corHeader);
-    float: right;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 20px;
-    padding: 15px;
-    width: 70vw;
+    margin: 20px 20px 0px 20px;
+    padding: 10px;
+    height: 40px;
     border-radius: 5px;
+    grid-column: 2/5;
+    grid-row: 1;
 }
 header > input{
     border: none;
@@ -42,14 +50,20 @@ header > section{
     justify-content: space-around;
 }
 header > section > .userLogado{
-    padding: 5px 20px 5px 0px;
+    padding: 15px 20px 0px 0px;
     border-right: 2px solid rgba(128, 128, 128, 0.218);
+}
+header img{
+    background-color: gray;
+    border-radius: 50%;
+    height: 45px;
+    width: 45px;
 }
 header > section > button.logout{
     border: none;
     background-color: transparent;
     color: gray;
-    font-weight: 700;
+    font-size: 1em;
 }
 
 aside{
@@ -59,6 +73,7 @@ aside{
     display: flex;
     flex-direction: column;
     height: 100vw;
+    grid-row: 1/2;
 }
 aside > h1{
     background-color: var(--corTitulo);
@@ -98,5 +113,72 @@ a.cadastro{
 }
 
 .material-symbols-outlined{
-    color: rgba(0, 0, 0, 0.559);
+    color: gray;
+}
+
+main{
+    margin: 0px 20px;
+    grid-column: 2/5;
+    grid-row: 2/4;
+
+    display: grid;
+    grid-template-columns: 1fr  1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 20px;
+}
+
+div.cards{ 
+    background-color: white;
+}
+#total, #mês, #rev{
+    text-align: center;
+    padding: 50px;
+    font-size: 4em;
+}
+section#total{
+    color: rgb(0, 0, 150);
+}
+section#mês{
+    color: rgb(0, 150, 0);
+}
+section#rev{
+    color: rgb(150, 0, 0);
+}
+
+div.cards > p{
+    text-align: end;
+    color: gray;
+    padding: 0px 10px 10px 0px;
+}
+
+div.conteudo{
+    padding: 20px 10px;
+    background-color: white;
+    grid-column: 1/4;
+}
+table{
+    border-collapse: collapse;
+    width: 100%;
+    color: gray;
+}
+caption{
+    text-align: start;
+    padding-bottom: 20px;
+    font-weight: bold;
+}
+td, th{
+    padding: 5px;
+    text-align: start;
+}
+th{
+    font-size: 0.8em;
+    font-weight: 400;
+}
+td{
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    color: rgba(0, 0, 0, 0.6);
+}
+td.inativo{
+    color: rgba(128, 128, 128, 0.5);
 }
