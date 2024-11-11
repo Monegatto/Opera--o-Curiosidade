@@ -5,14 +5,14 @@
     --corTitulo: #eff4fc;
     --corFundo: #f5f5f5;
 
-    --arimo: "Arimo", sans-serif;
     --anton-regular: "Anton", sans-serif;
+    --roboto: "Roboto", sans-serif;
 }
 
 *{
     margin: 0px;
     padding: 0px;
-    font-family: var(--arimo);
+    font-family: var(--roboto);
 }
 body{
     background-color: var(--corFundo);
@@ -32,7 +32,8 @@ header{
     justify-content: space-between;
     align-items: center;
     margin: 20px 20px 0px 20px;
-    padding: 15px;
+    padding: 10px;
+    height: 40px;
     border-radius: 5px;
     grid-column: 2/5;
     grid-row: 1;
@@ -49,14 +50,20 @@ header > section{
     justify-content: space-around;
 }
 header > section > .userLogado{
-    padding: 5px 20px 5px 0px;
+    padding: 15px 20px 0px 0px;
     border-right: 2px solid rgba(128, 128, 128, 0.218);
+}
+header img{
+    background-color: gray;
+    border-radius: 50%;
+    height: 45px;
+    width: 45px;
 }
 header > section > button.logout{
     border: none;
     background-color: transparent;
     color: gray;
-    font-weight: 700;
+    font-size: 1em;
 }
 
 aside{
@@ -110,36 +117,38 @@ a.cadastro{
 }
 
 main{
-    margin: 20px;
+    margin: 0px 20px;
     grid-column: 2/5;
     grid-row: 2/4;
 
-    display: flex;
-    flex-direction: column;
-}
-
-div.cards{
-    margin-bottom: 20px;
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: 1fr  1fr 1fr;
+    grid-template-rows: auto auto;
     gap: 20px;
 }
-#total, #mês, #rev{
+
+div.cards{ 
     background-color: white;
+}
+#total, #mês, #rev{
     text-align: center;
     padding: 50px;
+    font-size: 4em;
 }
 section#total{
-    color: blue;
-    grid-column: 1/2;
+    color: rgb(0, 0, 150);
 }
 section#mês{
-    color: green;
-    grid-column: 2/3;
+    color: rgb(0, 150, 0);
 }
 section#rev{
-    color: red;
-    grid-column: 3/4;
+    color: rgb(150, 0, 0);
+}
+
+div.cards > p{
+    text-align: end;
+    color: gray;
+    padding: 0px 10px 10px 0px;
 }
 
 div.conteudo{
@@ -150,20 +159,26 @@ div.conteudo{
 table{
     border-collapse: collapse;
     width: 100%;
-}
-td, th{
-    padding: 5px;
-    text-align: start;
-    font-weight: lighter;
-}
-th{
     color: gray;
-}
-td{
-    border-top: 1px solid rgba(0, 0, 0, 0.36);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.36);
 }
 caption{
     text-align: start;
     padding-bottom: 20px;
+    font-weight: bold;
+}
+td, th{
+    padding: 5px;
+    text-align: start;
+}
+th{
+    font-size: 0.8em;
+    font-weight: 400;
+}
+td{
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    color: rgba(0, 0, 0, 0.6);
+}
+td.inativo{
+    color: rgba(128, 128, 128, 0.5);
 }
