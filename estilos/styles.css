@@ -65,8 +65,10 @@ header img{
 header > section > button.logout{
     border: none;
     background-color: transparent;
-    color: gray;
     font-size: 1em;
+}
+button.logout > a{
+    color: gray;
 }
 
 aside{
