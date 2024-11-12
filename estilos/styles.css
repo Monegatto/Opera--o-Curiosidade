@@ -16,9 +16,11 @@
 }
 a{
     text-decoration: none;
+    color: white;
 }
 body{
     background-color: var(--corFundo);
+    
     box-sizing: border-box;
     display: grid;
     grid-template-columns: 350px auto;
@@ -77,7 +79,7 @@ aside{
     padding: 15px;
     display: flex;
     flex-direction: column;
-    height: 100vw;
+    height: 100vh;
     grid-row: 1/2;
 }
 aside > h1{
@@ -161,13 +163,14 @@ div.conteudo{
     height: 100vh;
     grid-column: 1/5;
     display: grid;
-    grid-template-rows: 80px max-content;
+    grid-template-rows: 60px max-content;
+    grid-template-columns: 1fr 10px;
 }
 div.conteudo > p{
     color: gray;
     text-align: start;
     font-weight: bold;
-    margin-top: 10px;
+        
 }
 div.conteudo > button{
     height: 40px;

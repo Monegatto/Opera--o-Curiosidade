@@ -1,0 +1,72 @@
+form{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding-left: 20px;
+    width: 100%;
+}
+
+h2{
+    margin-bottom: 20px;
+    border-bottom: 2px solid rgba(128, 128, 128, 0.5);
+    font-size: 1.1em;
+}
+
+label{
+    color: gray;
+}
+
+form  input, textarea{
+    border: 1px solid rgba(128, 128, 128, 0.5);
+    background-color: var(--corFundo);
+    padding: 10px;
+    margin-bottom: 15px;
+}
+form > div{
+    display: flex;
+    flex-direction: row;
+}
+form > div > div{
+    display: flex;
+    flex-direction: column;
+}
+
+div.divEmail{
+    margin-left: 20px;
+    width: 100%;
+}
+
+label.userAtivo{
+    grid-column: 2;
+    
+    justify-self: right;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+
+textarea{
+    resize: none;
+    height: 80px;
+}
+
+
+form > button{
+    height: 40px;
+    color: white;
+    font-weight: 500;
+    border-radius: 5px;
+    width: 200px;
+    align-self: center;
+    border: 10px;
+    margin-bottom: 20px;
+    background-color: rgba(0, 128, 0, 0.7);
+}

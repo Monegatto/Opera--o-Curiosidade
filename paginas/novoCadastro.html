@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../estilos/styles.css">
+    <link rel="stylesheet" href="../estilos/cadastro.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <title>Novo Cadastro</title>
+</head>
+<body>
+    <header>
+        <input type="search" name="pesquisa" id="ipesquisa" placeholder="Pesquisar..." size="50">
+        <section>
+            <img src="../manha.webp" alt="">
+            <p class="userLogado">Luciano Henrique</p>
+            <button type="button" class="logout"><a href="./login.html">SAIR</a></button>
+        </section>
+    </header>
+    <aside>
+        <h1 class="logo">Operação Curiosidade</h1>
+        <nav>
+            <a class="home" href="./home.html"><span class="material-symbols-outlined">home</span>    Home</a>
+            <a class="cadastro" href="./cadastros.html"><span class="material-symbols-outlined">group_add</span>  Cadastros</a>
+            <a class="relatorios" href="./relatorios.html"><span class="material-symbols-outlined">insert_chart</span>   Relatórios</a>
+        </nav>
+    </aside>
+    <main>
+        <div class="conteudo">
+            <p>Novo cadastro</p>
+            <label for="ativo" class="userAtivo">Ativo <input type="radio" name="ativo" id="iativo"></label>
+            <form>
+                <h2>1° Fatos e Dados</h2>
+                    <label for="inome">Nome</label>
+                    <input type="text" name="nome" id="inome">
+                    <div>
+                        <div class="divIdade">
+                            <label for="iidade">Idade</label>
+                            <input type="number" name="idade" id="iidade">
+                        </div>
+                        <div class="divEmail">
+                            <label for="iemail">E-mail</label>
+                            <input type="email" name="email" id="iemail">
+                        </div>
+                    </div>
+                    <label for="iendereco">Endereço</label>
+                    <input type="text" name="endereco" id="iendereco">
+                    
+                    <label for="iinfo">Outras informações</label>
+                    <input type="text" name="info" id="iinfo">
+                <h2>2° Interesses</h2>
+                    <textarea name="inter" id="iinter"></textarea>
+                <h2>3° Sentimentos</h2>
+                    <textarea name="senti" id="isenti"></textarea>
+                <h2>4° Valores</h2>
+                    <textarea name="valor" id="ivalor"></textarea>
+                <button>GRAVAR</button>
+            </form>
+        </div>
+    </main>
+    <script src="../scripts/scripts.js"></script>
+</body>
+</html>
