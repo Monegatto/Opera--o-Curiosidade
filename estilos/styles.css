@@ -165,14 +165,11 @@ div.conteudo > p{
     font-weight: bold;
     margin-top: 10px;
 }
-div.conteudo > button.novoCadastro{
+div.conteudo > button{
     height: 40px;
-}
-
-button.novoCadastro{
-    background-color: rgba(0, 128, 0, 0.5);
     color: white;
-    border-radius: 10px;
+    font-weight: 500;
+    border-radius: 5px;
     width: 200px;
     justify-self: end;
     padding: 10px;
@@ -180,6 +177,13 @@ button.novoCadastro{
     grid-row: 1/2;
     grid-column: 3/4;
 }
+button.novoCadastro{
+    background-color: rgba(0, 128, 0, 0.7);
+}
+button.imprimirLista{
+    background-color: rgba(0, 0, 128, 0.7);
+}
+
 table{
     border-collapse: collapse;
     width: 100%;
