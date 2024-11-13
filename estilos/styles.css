@@ -20,15 +20,9 @@ a{
 }
 body{
     background-color: var(--corFundo);
-    
-    box-sizing: border-box;
     display: grid;
     grid-template-columns: 350px auto;
     grid-template-rows: 100px auto;
-    grid-template-areas: 
-    "aside header header header" 
-    "aside main main main"
-    "aside main main main";
 }
 
 header{
@@ -55,11 +49,14 @@ header > section{
     justify-content: space-around;
 }
 header > section > .userLogado{
-    padding: 15px 20px 0px 0px;
+    padding-top: 5px;
+    padding-right: 20px;
+    margin: 10px;
     border-right: 2px solid rgba(128, 128, 128, 0.218);
 }
 header img{
-    background-color: gray;
+    background-color: rgba(128, 128, 128, 0.2);
+    padding: 1px;
     border-radius: 50%;
     height: 45px;
     width: 45px;
@@ -77,10 +74,9 @@ aside{
     background-color: white;
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.222);
     padding: 15px;
+    grid-row: 1/4;
     display: flex;
     flex-direction: column;
-    height: 100vh;
-    grid-row: 1/2;
 }
 aside > h1{
     background-color: var(--corTitulo);
@@ -106,7 +102,6 @@ nav{
 nav > a{
     color: rgba(0, 0, 0, 0.808);
     padding: 6px;
-    vertical-align: middle;
     font-weight: 500;
 }
 nav > a > span{
@@ -130,11 +125,12 @@ main{
     display: grid;
     grid-template-columns: 1fr  1fr 1fr;
     grid-template-rows: auto auto auto;
-    gap: 20px;
+    column-gap: 20px;
 }
 
 div.cards{ 
     background-color: white;
+    margin-bottom: 20px;
 }
 #total, #mês, #rev{
     text-align: center;
@@ -160,11 +156,11 @@ div.cards > p{
 div.conteudo{
     padding: 20px 10px;
     background-color: white;
-    height: 100vh;
-    grid-column: 1/5;
+    min-height: 100vh;
+    grid-column: 1/4;
     display: grid;
-    grid-template-rows: 60px max-content;
-    grid-template-columns: 1fr 10px;
+    grid-template-rows: 45px max-content;
+    grid-template-columns: 1fr 85px;
 }
 div.conteudo > p{
     color: gray;
@@ -193,6 +189,7 @@ button.imprimirLista{
 
 table{
     border-collapse: collapse;
+    margin-top: 15px;
     width: 100%;
     color: gray;
     grid-row: 2;
