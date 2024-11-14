@@ -54,15 +54,25 @@ let validaRepeticaoNome = (cadastros, fnome) => {
 /**
  * Percorre todo o array e compara o email de cada entrada com o email fornecido
  */
-let validaRepeticaoEmail = (cadastros, femail) => {
-    for(let i = 0; i < cadastros.length; i++){
-        if(cadastros[i].email == femail)
+let validaRepeticaoEmail = (users, femail) => {
+    for(let i = 0; i < users.length; i++){
+        if(users[i].email == femail)
             return true
     }
     return false
 }
 
-//adaptar a função para funcionar com usuários ao invés de colaboradores
+/**
+ * Percorre todo o array de usuários e verifica se a senha e email fornecidos pertencem ao mesmo usuário
+ */
+let validaLogin = (users, femail, fsenha) => {
+    for(let i = 0; i < users.length; i++){
+        if((users[i].email == femail) && (users[i].senha == fsenha))
+            return true
+    }
+    return false
+}
+
 /**
  * Função que cadastra novos colaboradores no sistema
  */
@@ -79,15 +89,14 @@ function cadastrar(){
         return false
     }                                                                     
     let femail = formData.get("email")
-    if(femail == ""){
+    if(femail == ""){                                                       //Lida com o campo de email vazio
         window.alert("Você deve fornecer um email para o cadastro")
         return false
-    }                                                   //Se o email não for vazio, a validação ocorre
-    else if(validaRepeticaoEmail(cadastros, femail)){                    //Verifica se o email é repetido
+    }else if(validaRepeticaoEmail(cadastros, femail)){                      //Verifica se o email é repetido
         window.alert("Uma conta com esse email já existe")
         return false
     }
-    if(!((/^[\w\.]+@([\w-]+\.)+[\w-]{2,4}$/).test(femail))){   //Verifica se o email inserido é valido
+    if(!((/^[\w\.]+@([\w-]+\.)+[\w-]{2,4}$/).test(femail))){                //Verifica se o email inserido é valido
         window.alert("Email inválido, tente cadastrar outro")
         return false
     }
@@ -107,6 +116,35 @@ function cadastrar(){
     cadastros.push(novoCadastro)
 
     localStorage.setItem("Cadastros", JSON.stringify(cadastros))
+
+    setTimeout(() => window.location.replace("./home.html"))
+}
+
+/**
+ * Função de login com validação para email e senha com validação para entradas vazias e existentes/corretas
+ */
+function login(){
+    debugger
+    let formData = new FormData(document.forms.formLogin)
+    let users = JSON.parse(localStorage.getItem("Usuarios"))
+
+    let femail = formData.get("email")                              
+    if(femail == ""){                                               //Verifica se o campo de email está vazio
+        window.alert("Você deve fornecer um email para o login!")
+        return false
+    } else if(!validaRepeticaoEmail(users, femail)){                //Verifica se o email informado existe no armazenamento
+        window.alert("Email não encontrado no sistema!")
+        return false
+    }
+
+    let fsenha = formData.get("senha")
+    if(fsenha == ""){                                               //Verifica se o campo de senha está vazio
+        window.alert("Você deve fornecer uma senha para o login!")
+        return false
+    }else if(!validaLogin(users, femail, fsenha)){                  //Valida se o email e senha informado pertencem ao mesmo usuário
+        window.alert("Senha incorreta, tente novamente")
+        return false
+    }
 
     setTimeout(() => window.location.replace("./home.html"))
 }

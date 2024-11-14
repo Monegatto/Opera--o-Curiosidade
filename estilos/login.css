@@ -24,7 +24,7 @@ main{
     height: 100vh;
 }
 
-div{
+form{
     background-color: white;
     border: 1px solid black;
     display: flex;
