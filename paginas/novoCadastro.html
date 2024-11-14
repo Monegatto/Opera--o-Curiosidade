@@ -30,7 +30,7 @@
         <div class="conteudo">
             <p>Novo cadastro</p>
             <label for="ativo" class="userAtivo">Ativo <input type="checkbox" name="ativo" id="iativo"></label>
-            <form>
+            <form id="formCadastro">
                 <h2>1° Fatos e Dados</h2>
                     <label for="inome">Nome</label>
                     <input type="text" name="nome" id="inome">
@@ -55,7 +55,7 @@
                     <textarea name="senti" id="isenti"></textarea>
                 <h2>4° Valores</h2>
                     <textarea name="valor" id="ivalor"></textarea>
-                <button>GRAVAR</button>
+                <button onclick="cadastrar()">GRAVAR</button>
             </form>
         </div>
     </main>
