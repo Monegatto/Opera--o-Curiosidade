@@ -55,11 +55,7 @@ header > section > .userLogado{
     border-right: 2px solid rgba(128, 128, 128, 0.218);
 }
 header img{
-    background-color: rgba(128, 128, 128, 0.2);
-    padding: 1px;
-    border-radius: 50%;
-    height: 45px;
-    width: 45px;
+    height: 50px;
 }
 header > section > button.logout{
     border: none;
@@ -126,6 +122,10 @@ main{
     grid-template-columns: 1fr  1fr 1fr;
     grid-template-rows: auto auto auto;
     column-gap: 20px;
+}
+
+main img{
+    display: none;
 }
 
 div.cards{ 
