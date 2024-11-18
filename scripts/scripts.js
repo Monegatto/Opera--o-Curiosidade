@@ -1,9 +1,46 @@
 /**
+ * Função de pesquisa na tabela de cadastros
+ */
+function pesquisar() {
+    let termo = window.document.querySelector("input#ipesquisa").value.toUpperCase()
+    let tabela = window.document.querySelector("tbody")
+    let encontrou
+
+    for(let i = 0; i < tabela.rows.length; i++){
+
+        tabela.rows[i].style.display = ""
+        encontrou = false
+
+        for(let j = 0; j < tabela.rows[i].cells.length; j++){
+            let conteudoCelula = tabela.rows[i].cells[j].textContent.toUpperCase()
+
+            if(j == 0) {
+                let nomeCompleto = conteudoCelula.split(" ")
+                for(let k = 0; k < nomeCompleto.length; k++){
+                    if(nomeCompleto[k].startsWith(termo)){
+                        encontrou = true
+                        break
+                    }
+                }
+            } else {
+                if(conteudoCelula.startsWith(termo)){
+                    encontrou = true
+                    break
+                }
+            }
+            
+        }
+        if(!encontrou)
+            tabela.rows[i].style.display = "none"
+    }
+}
+
+/**
  * Buscar a lista de usuários e a criar se ela não existir
  */
 function carregarUsers(){
-    let users = JSON.parse(localStorage.getItem("Usuarios"))
-    if(users == null)
+    let users = JSON.parse(localStorage.getItem("Usuarios"))    //Busca a lista de usuários do sistema
+    if(users == null)                                           //Se não existir lista de usuários, cria ela
         localStorage.setItem("Usuarios", "[]")
 }
 
@@ -11,11 +48,11 @@ function carregarUsers(){
  * Buscar a lista de cadastros e a criar se ela não existir, depois preenche a tabela com os dados dos colaboradores
  */
 function carregarCadastros(){
-    let cadastros = JSON.parse(localStorage.getItem("Cadastros"))
-    if(cadastros == null)
+    let cadastros = JSON.parse(localStorage.getItem("Cadastros"))   //Busca a lista de cadastros no sistema
+    if(cadastros == null)                                           //Se não existir lista de cadastros, cria ela
         localStorage.setItem("Cadastros", "[]")
 
-    let tabela = window.document.querySelector("tbody")     //Encontra a tabela na página
+    let tabela = window.document.querySelector("tbody")             //Encontra a tabela na página
     for(let i = 0; i < cadastros.length; i++){
         let user = cadastros[i]
 
