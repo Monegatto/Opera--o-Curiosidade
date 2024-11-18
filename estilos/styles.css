@@ -108,7 +108,6 @@ a.cadastro{
     border-bottom: 2px solid rgba(128, 128, 128, 0.218);
     width: 250px;
 }
-
 .material-symbols-outlined{
     color: gray;
 }
@@ -123,7 +122,6 @@ main{
     grid-template-rows: auto auto auto;
     column-gap: 20px;
 }
-
 main img{
     display: none;
 }
@@ -146,7 +144,6 @@ section#mês{
 section#rev{
     color: rgb(150, 0, 0);
 }
-
 div.cards > p{
     text-align: end;
     color: gray;

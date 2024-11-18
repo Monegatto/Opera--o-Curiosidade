@@ -10,7 +10,7 @@ function pesquisar() {
 
         tabela.rows[i].style.display = ""
         encontrou = false
-
+loopCel:
         for(let j = 0; j < tabela.rows[i].cells.length; j++){
             let conteudoCelula = tabela.rows[i].cells[j].textContent.toUpperCase()
 
@@ -19,7 +19,7 @@ function pesquisar() {
                 for(let k = 0; k < nomeCompleto.length; k++){
                     if(nomeCompleto[k].startsWith(termo)){
                         encontrou = true
-                        break
+                        break loopCel
                     }
                 }
             } else {
@@ -36,16 +36,17 @@ function pesquisar() {
 }
 
 /**
- * Buscar a lista de usuários e a criar se ela não existir
+ * Busca a lista de usuários e a cria se ela não existir, depois a retorna
  */
 function carregarUsers(){
     let users = JSON.parse(localStorage.getItem("Usuarios"))    //Busca a lista de usuários do sistema
     if(users == null)                                           //Se não existir lista de usuários, cria ela
         localStorage.setItem("Usuarios", "[]")
+    return users
 }
 
 /**
- * Buscar a lista de cadastros e a criar se ela não existir, depois preenche a tabela com os dados dos colaboradores
+ * Busca a lista de cadastros e a cria se ela não existir, depois preenche a tabela com os dados dos colaboradores
  */
 function carregarCadastros(){
     let cadastros = JSON.parse(localStorage.getItem("Cadastros"))   //Busca a lista de cadastros no sistema
@@ -78,7 +79,7 @@ function carregarCadastros(){
 }
 
 /**
- * Percorre todo o array e compara o nome de cada entrada com o nome fornecido
+ * Percorre todo a lista de nomes cadastrados e compara o nome de cada entrada com o nome fornecido
  */
 let validaRepeticaoNome = (cadastros, fnome) => {
     for(let i = 0; i < cadastros.length; i++){
@@ -89,7 +90,7 @@ let validaRepeticaoNome = (cadastros, fnome) => {
 }
 
 /**
- * Percorre todo o array e compara o email de cada entrada com o email fornecido
+ * Percorre a lista de usuários do sistema e compara o email de cada um com o email fornecido
  */
 let validaRepeticaoEmail = (users, femail) => {
     for(let i = 0; i < users.length; i++){
@@ -100,7 +101,16 @@ let validaRepeticaoEmail = (users, femail) => {
 }
 
 /**
- * Percorre todo o array de usuários e verifica se a senha e email fornecidos pertencem ao mesmo usuário
+ * Valida o email fornecido e retorna falso para inválido e verdadeiro para válido
+ */
+let validaEmail = (femail) =>{
+    if(!((/^[\w\.]+@([\w-]+\.)+[\w-]{2,4}$/).test(femail)))                //Verifica se o email inserido é valido
+        return false
+    return true
+}
+
+/**
+ * Percorre toda a lista de usuários e verifica se a senha e email fornecidos pertencem ao mesmo usuário
  */
 let validaLogin = (users, femail, fsenha) => {
     for(let i = 0; i < users.length; i++){
@@ -133,7 +143,7 @@ function cadastrar(){
         window.alert("Uma conta com esse email já existe")
         return false
     }
-    if(!((/^[\w\.]+@([\w-]+\.)+[\w-]{2,4}$/).test(femail))){                //Verifica se o email inserido é valido
+    if(!validaEmail){                                                       //Verifica se o email inserido é valido
         window.alert("Email inválido, tente cadastrar outro")
         return false
     }
@@ -149,27 +159,24 @@ function cadastrar(){
 
     let fcebola = {inter: finter, senti: fsenti, valor: fvalor}
     let novoCadastro = {nome: fnome, idade: fidade, email: femail, endereco: fendereco, info: finfo, ativo: iativo, cebola: fcebola}
-
     cadastros.push(novoCadastro)
-
     localStorage.setItem("Cadastros", JSON.stringify(cadastros))
 
     setTimeout(() => window.location.replace("./home.html"))
 }
 
 /**
- * Função de login com validação para email e senha com validação para entradas vazias e existentes/corretas
+ * Função de login com validações para email e senha
  */
 function login(){
-    debugger
     let formData = new FormData(document.forms.formLogin)
-    let users = JSON.parse(localStorage.getItem("Usuarios"))
+    let users = carregarUsers()
 
     let femail = formData.get("email")                              
     if(femail == ""){                                               //Verifica se o campo de email está vazio
         window.alert("Você deve fornecer um email para o login!")
         return false
-    } else if(!validaRepeticaoEmail(users, femail)){                //Verifica se o email informado existe no armazenamento
+    } else if(!validaRepeticaoEmail(users, femail)){                //Verifica se o email informado existe no sistema
         window.alert("Email não encontrado no sistema!")
         return false
     }
@@ -184,4 +191,36 @@ function login(){
     }
 
     setTimeout(() => window.location.replace("./home.html"))
+}
+
+/**
+ * Função de criar conta com validação para email
+ */
+function criarConta(){
+    let formData = new FormData(document.forms.formCadastro)
+    let users = carregarUsers()
+
+    let femail = formData.get("email")
+    if(femail == ""){                                                                  //Verifica se o campo de email está vazio
+        window.alert("Você deve fornecer um email para criar a conta")
+        return false
+    } else if(validaRepeticaoEmail(users, femail)){                                    //Verifica se já existe uma conta com esse email no sistema
+        window.alert("Uma conta com esse email já está cadastrada no sistema")
+        return false
+    } else if(!validaEmail(femail)){                                                   //Verifica se o email inserido é valido
+        window.alert("Email inválido, tente cadastrar outro")
+        return false
+    }
+
+    let fsenha = formData.get("senha")
+    if(fsenha == ""){                                                                  //Verifica se o campo de senha está vazio
+        window.alert("Você deve fornecer uma senha para criar a conta")
+        return false
+    }
+
+    let novaConta = {email: femail, senha: fsenha}
+    users.push(novaConta)
+    localStorage.setItem("Usuarios", JSON.stringify(users))
+
+    setTimeout(() => window.location.replace("./login.html"))
 }
