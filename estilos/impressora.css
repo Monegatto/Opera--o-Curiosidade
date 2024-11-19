@@ -3,6 +3,7 @@
 *{
     margin: 10px;
     padding: 10px;
+    
 }
 
 @page{
@@ -35,4 +36,6 @@ main img{
     height: 150px;
 }
 
-
+td.inativo{
+    color: rgba(128, 128, 128, 0.5);
+}
