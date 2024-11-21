@@ -35,7 +35,12 @@ form{
     height: 450px;
     width: 450px;
     border-radius: 5px;
-    padding: 0px 30px 30px 30px;
+    padding: 0px 20px 20px 20px;
+}
+
+p{
+    font-weight: 700;
+    font-size: 2em;
 }
 
 img{
@@ -48,6 +53,16 @@ input{
     border: 2px solid black;
 }
 
+form > div{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+    height: 150px;
+    width: 100%;
+}
+
 button{
     background-color: black;
     color: white;
@@ -55,6 +70,16 @@ button{
     width: 70%;
     padding: 15px;
     border-radius: 5px;
-    margin-bottom: 30px;
     font-weight: 500;
+}
+
+a{
+    text-decoration: none;
+    background-color: black;
+    color: white;
+    width: 70%;
+    padding: 15px 0px;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 0.9em;
 }

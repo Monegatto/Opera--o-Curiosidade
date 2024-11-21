@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="../estilos/cadastro.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-    <title>Novo Cadastro</title>
+    <title>Editar Cadastro</title>
 </head>
-<body>
+<body onload="getCad()">
     <header>
         <input type="search" name="pesquisa" id="ipesquisa" placeholder="Pesquisar..." size="50">
         <section>
@@ -28,8 +28,8 @@
     </aside>
     <main>
         <div class="conteudo">
-            <p>Novo cadastro</p>
-            <form id="formCadastro" onsubmit="return false">
+            <p>Editar cadastro</p>
+            <form id="formCadastro">
                 <label for="ativo" class="userAtivo">Ativo <input type="checkbox" name="ativo" id="iativo"></label>
                 <h2>1° Fatos e Dados</h2>
                     <label for="inome">Nome</label>
@@ -55,7 +55,10 @@
                     <textarea name="senti" id="isenti"></textarea>
                 <h2>4° Valores</h2>
                     <textarea name="valor" id="ivalor"></textarea>
-                <button class="cadastrar" onclick="cadastrar()">GRAVAR</button>
+                <div>
+                    <button class="cadastrar" onclick="editar()">Editar</button>
+                    <button class="excluir" onclick="excluir()">Excluir</button>
+                </div>
             </form>
         </div>
     </main>

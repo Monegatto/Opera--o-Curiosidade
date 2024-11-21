@@ -42,16 +42,15 @@ div.divEmail{
 }
 
 label.userAtivo{
-    grid-column: 2;
-    padding: 10px;
-    justify-self: left;
+    margin-left: auto;
 }
 label.userAtivo > input{
     appearance: none;
-    width: 15px;
-    height: 15px;
+    width: 10px;
+    height: 10px;
     border: 1px solid black;
     border-radius: 50%;
+    margin: 0px;
 }
 label.userAtivo > input:checked{
     background-color: black;
@@ -64,17 +63,15 @@ input::-webkit-inner-spin-button {
 }
 
 input[type=number] {
-  -moz-appearance: textfield;
+  appearance: textfield;
 }
-
 
 textarea{
     resize: none;
     height: 80px;
 }
 
-
-form > button{
+form button{
     height: 40px;
     color: white;
     font-weight: 500;
@@ -83,5 +80,16 @@ form > button{
     align-self: center;
     border: 10px;
     margin-bottom: 20px;
+}
+
+form > div{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+form button.cadastrar{
     background-color: rgba(0, 128, 0, 0.7);
+}
+form button.excluir{
+    background-color: rgba(128, 0, 0, 0.7);
 }
