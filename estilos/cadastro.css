@@ -24,7 +24,7 @@ form  input, textarea{
 }
 form > div{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 form > div > div{
     display: flex;
@@ -34,11 +34,6 @@ form > div > div{
 div.conteudo{
     grid-template-columns: 1fr 85px;
     padding: 20px;
-}
-
-div.divEmail{
-    margin-left: 20px;
-    width: 100%;
 }
 
 label.userAtivo{
@@ -92,4 +87,14 @@ form button.cadastrar{
 }
 form button.excluir{
     background-color: rgba(128, 0, 0, 0.7);
+}
+
+@media screen and (min-width: 600px){
+    form > div{
+        flex-direction: row;
+    }
+    div.divEmail{
+        margin-left: 20px;
+        width: 100%;
+    }
 }

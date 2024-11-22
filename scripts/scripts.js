@@ -1,16 +1,20 @@
 /**
- * Quando a tela for carregada o nome do usuário logado vai ser buscado no sessionStorage e a função de pesquisa será aplicada a todas as barras de pesquisa
+ * Quando a tela for carregada o usuário logado aparece no topo da tela e diversas funções são aplicadas a componentes da pagina
  */
 window.addEventListener('load', () => {
     document.querySelector("p.userLogado").innerHTML = sessionStorage.getItem("Logado")
 
     document.querySelector("input#ipesquisa").addEventListener('change', pesquisar)
+
+    document.querySelector("span.menu").addEventListener('click', menu)
+
+    window.addEventListener('resize', mudouTamanho)
 })
 
 /**
  * Função de pesquisa na tabela de cadastros
  */
-function pesquisar() {
+function pesquisar(){
     let termo = window.document.querySelector("input#ipesquisa").value.toUpperCase()
     let tabela = window.document.querySelector("tbody")
     let encontrou
@@ -40,6 +44,43 @@ loopCell:
         }
         if(!encontrou)
             tabela.rows[i].style.display = "none"
+    }
+}
+
+/**
+ * Função que esconde o aside quando o usuário aperta o botão do menu no celular
+ */
+function menu(){
+    let aside = document.querySelector("aside")
+    let header = document.querySelector("header")
+    let main = document.querySelector("main")
+    if(aside.style.display == "flex"){
+        aside.style.display = "none"
+        header.style = "grid-column: 1/3;"
+        main.style = "grid-column: 1/3;"
+    }else{
+        aside.style.display = "flex"
+        header.style = "grid-column: 2/3;"
+        main.style = "grid-column: 2/3;"
+    }
+    
+}
+
+/**
+ * Função que altera a exibição do aside quando o tamanho da tela muda
+ */
+function mudouTamanho(){
+    let aside = document.querySelector("aside")
+    let header = document.querySelector("header")
+    let main = document.querySelector("main")
+    if(window.innerWidth < 600){
+        aside.style.display = "none"
+        header.style = "grid-column: 1/3;"
+        main.style = "grid-column: 1/3;"
+    }else{
+        aside.style.display = ""
+        header.style = "grid-column: 2/3;"
+        main.style = "grid-column: 2/3;"
     }
 }
 
@@ -221,7 +262,7 @@ function cadastrar(){
         window.alert("Uma conta com esse email já existe")
         return false
     }
-    if(!validaEmail){                                                       //Verifica se o email inserido é valido
+    else if(!validaEmail(femail)){                                                       //Verifica se o email inserido é valido
         window.alert("Email inválido, tente cadastrar outro")
         return false
     }
@@ -306,14 +347,14 @@ function editar(){
         window.alert("Uma conta com esse email já existe")
         return false
     }
-    if(!validaEmail){                                                                       //Verifica se o email inserido é valido
+    else if(!validaEmail(femail)){                                                                       //Verifica se o email inserido é valido
         window.alert("Email inválido, tente cadastrar outro")
         return false
     }
 
     let fidade = formData.get("idade")
     if(fidade != ""){                                                                       //Se o campo de idade não estiver vazio uma 
-        if(isNaN(fidade)){                                                                  //Verifica se o valor inserido é numéricovalidação é realizada
+        if(isNaN(fidade)){                                                                  //Verifica se o valor inserido é numérico
             window.alert("A idade deve ser um número!")
             return false
         } else if(fidade < 18 || fidade > 100){                                             //Verifica se a idade inserida está dentro dos limites esperados

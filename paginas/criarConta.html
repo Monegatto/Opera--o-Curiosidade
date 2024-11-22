@@ -12,12 +12,14 @@
     <main>
         <form id="formCadastro" onsubmit="return false"  autocomplete="off">
             <p>Criar Conta</p>
-            <input type="text" name="nome" id="inome" placeholder="Nome">
-            <input type="text" name="email" id="iemail" placeholder="Email">
-            <input type="password" name="senha" id="isenha" placeholder="Senha">
+            <div>
+                <input type="text" name="nome" id="inome" placeholder="Nome">
+                <input type="text" name="email" id="iemail" placeholder="Email">
+                <input type="password" name="senha" id="isenha" placeholder="Senha">
+            </div>
             <div>
                 <button onclick="criarConta()">CRIAR CONTA</button>
-                <a href="./login.html">FAZER LOGIN</a>
+                <button><a href="./login.html">FAZER LOGIN</a></button>
             </div>
         </form>
     </main>
