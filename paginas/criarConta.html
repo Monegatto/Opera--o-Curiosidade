@@ -10,10 +10,10 @@
 </head>
 <body onload="carregarUsers()">
     <main>
-        <form id="formCadastro" onsubmit="return false">
+        <form id="formCadastro" onsubmit="return false"  autocomplete="off">
             <p>Criar Conta</p>
             <input type="text" name="nome" id="inome" placeholder="Nome">
-            <input type="text" name="email" id="iemail" placeholder="Email" autocomplete="off">
+            <input type="text" name="email" id="iemail" placeholder="Email">
             <input type="password" name="senha" id="isenha" placeholder="Senha">
             <div>
                 <button onclick="criarConta()">CRIAR CONTA</button>
