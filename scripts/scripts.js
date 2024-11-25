@@ -167,7 +167,7 @@ function criarConta(){
     users.push(novaConta)
     localStorage.setItem("Usuarios", JSON.stringify(users))
 
-    setTimeout(() => window.location.replace("./login.html"))
+    setTimeout(() => window.location.replace("./home.html"))
 }
 
 /**

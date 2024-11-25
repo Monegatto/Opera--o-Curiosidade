@@ -11,16 +11,14 @@
 <body onload="carregarUsers()">
     <main>
         <form id="formCadastro" onsubmit="return false"  autocomplete="off">
-            <p>Criar Conta</p>
+            <p>Cadastrar Administrador</p>
             <div>
                 <input type="text" name="nome" id="inome" placeholder="Nome">
                 <input type="text" name="email" id="iemail" placeholder="Email">
                 <input type="password" name="senha" id="isenha" placeholder="Senha">
             </div>
-            <div>
-                <button onclick="criarConta()">CRIAR CONTA</button>
-                <button><a href="./login.html">FAZER LOGIN</a></button>
-            </div>
+            <button onclick="criarConta()">CADASTRAR ADMINISTRADOR</button>
+            <button onclick="history.back()">VOLTAR</button>
         </form>
     </main>
     <script src="../scripts/scripts.js"></script>

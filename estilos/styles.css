@@ -113,6 +113,10 @@ nav > a > span{
 }
 a.cadastro{
     border-top: 2px solid rgba(128, 128, 128, 0.218);
+    border-bottom: 1px solid rgba(128, 128, 128, 0.218);
+}
+a.relatorios{
+    border-top: 1px solid rgba(128, 128, 128, 0.218);
     border-bottom: 2px solid rgba(128, 128, 128, 0.218);
 }
 .material-symbols-outlined{
