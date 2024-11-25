@@ -15,8 +15,8 @@ window.addEventListener('load', () => {
  * Função de pesquisa na tabela de cadastros
  */
 function pesquisar(){
-    let termo = window.document.querySelector("input#ipesquisa").value.toUpperCase()
-    let tabela = window.document.querySelector("tbody")
+    let termo = document.querySelector("input#ipesquisa").value.toUpperCase()
+    let tabela = document.querySelector("tbody")
     let encontrou
 
     for(let i = 0; i < tabela.rows.length; i++){
@@ -211,8 +211,9 @@ function carregarCadastros(){
     let cadastros = JSON.parse(localStorage.getItem("Cadastros"))   //Busca a lista de cadastros no sistema
     if(cadastros == null)                                           //Se não existir lista de cadastros, cria ela
         localStorage.setItem("Cadastros", "[]")
+    let rev = 0
 
-    let tabela = window.document.querySelector("tbody")             //Encontra a tabela na página
+    let tabela = document.querySelector("tbody")             //Encontra a tabela na página
     cadastros.forEach(cadastro => {
         let user = cadastro
 
@@ -227,6 +228,7 @@ function carregarCadastros(){
         if(!user.ativo){
             ativo.className += " " + "inativo"
             ativo.append("Inativo")
+            rev++
         }else
             ativo.append("Ativo")
 
@@ -236,7 +238,35 @@ function carregarCadastros(){
         linha.addEventListener('click', setCad)
 
         tabela.append(linha)
+        localStorage.setItem("Rev", rev)
     })
+}
+
+/**
+ * Função que preenche os dados dos cards de cadastros com valores baseados na atividade do sistema
+ */
+function carregarCards(){
+    let cards = document.querySelectorAll("div.cards")
+    let cadastros = JSON.parse(localStorage.getItem("Cadastros"))
+    let mes = sessionStorage.getItem("Mes")
+    if(!mes)
+        mes = 0
+    let rev = localStorage.getItem("Rev")
+
+    let totalCard = document.createElement("section")
+    totalCard.innerHTML = cadastros.length
+    totalCard.id = "total"
+    cards[0].prepend(totalCard)
+
+    let mesCard = document.createElement("section")
+    mesCard.innerHTML = mes
+    mesCard.id = "mês"
+    cards[1].prepend(mesCard)
+
+    let revCard = document.createElement("section")
+    revCard.innerHTML = rev
+    revCard.id = "rev"
+    cards[2].prepend(revCard)
 }
 
 /**
@@ -245,6 +275,8 @@ function carregarCadastros(){
 function cadastrar(){
     let formData = new FormData(document.forms.formCadastro)
     let cadastros = JSON.parse(localStorage.getItem("Cadastros"))
+
+    let mes = sessionStorage.getItem("Mes")
 
     let fnome = formData.get("nome")
     if(fnome == ""){                                                        //Lida com campo de nome vazio
@@ -283,11 +315,13 @@ function cadastrar(){
     let finter = formData.get("inter")
     let fsenti = formData.get("senti")
     let fvalor = formData.get("valor")
-    let iativo = window.document.querySelector("input#iativo").checked      //Tratamento especial ao checkbox
+    let iativo = document.querySelector("input#iativo").checked      //Tratamento especial ao checkbox
 
     let novoCadastro = {nome: fnome, idade: fidade, email: femail, endereco: fendereco, info: finfo, ativo: iativo, inter: finter, senti: fsenti, valor: fvalor}
     cadastros.push(novoCadastro)
     localStorage.setItem("Cadastros", JSON.stringify(cadastros))
+    mes++
+    sessionStorage.setItem("Mes", mes)
 
     setTimeout(() => window.location.replace("./home.html"))
 }
@@ -319,7 +353,7 @@ function getCad(){
         field.value = value                                                 //Atribui os valores do colaborador aos campos do formulario
     }
 
-    window.document.querySelector("input#iativo").checked = editavel.ativo  //O input checkbox possui comportamento diferente e portanto deve ser tratado diferentemente
+    document.querySelector("input#iativo").checked = editavel.ativo  //O input checkbox possui comportamento diferente e portanto deve ser tratado diferentemente
 }
 
 /**
@@ -368,7 +402,7 @@ function editar(){
     let finter = formData.get("inter")
     let fsenti = formData.get("senti")
     let fvalor = formData.get("valor")
-    let iativo = window.document.querySelector("input#iativo").checked
+    let iativo = document.querySelector("input#iativo").checked
 
     let cadAtualizado = {nome: fnome, idade: fidade, email: femail, endereco: fendereco, info: finfo, ativo: iativo, inter: finter, senti: fsenti, valor: fvalor}
     
@@ -386,10 +420,16 @@ function editar(){
  * Função que exclui um dos cadastros no sistema
  */
 function excluir(){
+    let mes = sessionStorage.getItem("Mes")
     let cadastros = JSON.parse(localStorage.getItem("Cadastros"))
     for(let i = 0; i < cadastros.length; i++){
-        if(cadastros[i].nome == sessionStorage.getItem("CadNome"))
+        if(cadastros[i].nome == sessionStorage.getItem("CadNome")){
             cadastros.splice(i, 1)
+            if(i >= mes){
+                mes--
+                sessionStorage.setItem("Mes", mes)
+            }
+        }
     }
     
     localStorage.setItem("Cadastros", JSON.stringify(cadastros))
