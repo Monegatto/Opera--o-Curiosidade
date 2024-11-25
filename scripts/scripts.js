@@ -6,7 +6,9 @@ window.addEventListener('load', () => {
 
     document.querySelector("input#ipesquisa").addEventListener('change', pesquisar)
 
-    document.querySelector("span.menu").addEventListener('click', menu)
+    document.querySelector("span.menuAside").addEventListener('click', menuAside)
+
+    document.querySelector("span.menuCards").addEventListener('click', menuCards)
 
     window.addEventListener('resize', mudouTamanho)
 })
@@ -48,22 +50,40 @@ loopCell:
 }
 
 /**
- * Função que esconde o aside quando o usuário aperta o botão do menu no celular
+ * Função que esconde o aside no celular
  */
-function menu(){
+function menuAside(){
     let aside = document.querySelector("aside")
     let header = document.querySelector("header")
     let main = document.querySelector("main")
+    let cards = document.querySelector("div.cards")
     if(aside.style.display == "flex"){
         aside.style.display = "none"
         header.style = "grid-column: 1/3;"
         main.style = "grid-column: 1/3;"
     }else{
+
+        if(cards)
+            cards.style.display = "none"
         aside.style.display = "flex"
         header.style = "grid-column: 2/3;"
         main.style = "grid-column: 2/3;"
     }
     
+}
+
+/**
+ * Função que esconde os cards no celular
+ */
+function menuCards(){
+    let cards = document.querySelector("div.cards")
+    let aside = document.querySelector("aside")
+    if(aside.style.display != "flex"){
+        if(cards.style.display == "flex")
+            cards.style.display = "none"
+        else
+            cards.style.display = "flex"
+    }
 }
 
 /**
@@ -73,14 +93,17 @@ function mudouTamanho(){
     let aside = document.querySelector("aside")
     let header = document.querySelector("header")
     let main = document.querySelector("main")
+    let cards = document.querySelector("div.cards")
     if(window.innerWidth < 600){
         aside.style.display = "none"
         header.style = "grid-column: 1/3;"
         main.style = "grid-column: 1/3;"
+        cards.style.display = "none"
     }else{
         aside.style.display = ""
         header.style = "grid-column: 2/3;"
         main.style = "grid-column: 2/3;"
+        cards.style.display = "flex"
     }
 }
 
@@ -246,7 +269,7 @@ function carregarCadastros(){
  * Função que preenche os dados dos cards de cadastros com valores baseados na atividade do sistema
  */
 function carregarCards(){
-    let cards = document.querySelectorAll("div.cards")
+    let card = document.querySelectorAll("div.card")
     let cadastros = JSON.parse(localStorage.getItem("Cadastros"))
     let mes = sessionStorage.getItem("Mes")
     if(!mes)
@@ -256,17 +279,17 @@ function carregarCards(){
     let totalCard = document.createElement("section")
     totalCard.innerHTML = cadastros.length
     totalCard.id = "total"
-    cards[0].prepend(totalCard)
+    card[0].prepend(totalCard)
 
     let mesCard = document.createElement("section")
     mesCard.innerHTML = mes
     mesCard.id = "mês"
-    cards[1].prepend(mesCard)
+    card[1].prepend(mesCard)
 
     let revCard = document.createElement("section")
     revCard.innerHTML = rev
     revCard.id = "rev"
-    cards[2].prepend(revCard)
+    card[2].prepend(revCard)
 }
 
 /**
