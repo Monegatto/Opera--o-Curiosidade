@@ -4,7 +4,7 @@
 window.addEventListener('load', () => {
     document.querySelector("p.userLogado").innerHTML = sessionStorage.getItem("Logado")
 
-    document.querySelector("input#ipesquisa").addEventListener('change', pesquisar)
+    document.querySelector("input#ipesquisa").addEventListener('keyup', pesquisar)
 
     document.querySelector("span.menuAside").addEventListener('click', menuAside)
 
@@ -22,7 +22,6 @@ function pesquisar(){
     let encontrou
 
     for(let i = 0; i < tabela.rows.length; i++){
-
         tabela.rows[i].style.display = ""
         encontrou = false
 loopCell:
@@ -141,8 +140,10 @@ let validaEmail = (femail) =>{
  */
 let validaLogin = (users, femail, fsenha) => {
     for(let i = 0; i < users.length; i++){
-        if((users[i].email == femail) && (users[i].senha == fsenha))
+        if((users[i].email == femail) && (users[i].senha == fsenha)){
+            sessionStorage.setItem("Logado", users[i].nome)
             return true
+        }
     }
     return false
 }
@@ -215,13 +216,6 @@ function login(){
         window.alert("Senha incorreta, tente novamente")
         return false
     }
-
-
-    users.forEach(user => {                                         //Percorre a lista de usuários do sistema e, quando encontra o usuário logado, o adiciona ao sessionStorage
-        if(user.email == femail)
-            sessionStorage.setItem("Logado", user.nome)
-    })
-
     setTimeout(() => window.location.replace("./home.html"))
 }
 
@@ -247,7 +241,7 @@ function carregarCadastros(){
         let ativo = document.createElement("td")
         
         if(!user.ativo){
-            ativo.className += " " + "inativo"
+            ativo.className = "inativo"
             ativo.append("Inativo")
             rev++
         }else
@@ -445,11 +439,11 @@ function excluir(){
     let cadastros = JSON.parse(localStorage.getItem("Cadastros"))
     for(let i = 0; i < cadastros.length; i++){
         if(cadastros[i].nome == sessionStorage.getItem("CadNome")){
-            cadastros.splice(i, 1)
-            if(i >= mes && mes > 0){
+            if((cadastros.length - i) <= mes && mes > 0){
                 mes--
                 sessionStorage.setItem("Mes", mes)
             }
+            cadastros.splice(i, 1)
         }
     }
     
