@@ -62,14 +62,12 @@ function menuAside(){
         header.style = "grid-column: 1/3;"
         main.style = "grid-column: 1/3;"
     }else{
-
         if(cards)
             cards.style.display = "none"
         aside.style.display = "flex"
         header.style = "grid-column: 2/3;"
         main.style = "grid-column: 2/3;"
     }
-    
 }
 
 /**
@@ -261,8 +259,8 @@ function carregarCadastros(){
         linha.addEventListener('click', setCad)
 
         tabela.append(linha)
-        localStorage.setItem("Rev", rev)
     })
+    localStorage.setItem("Rev", rev)
 }
 
 /**
@@ -448,7 +446,7 @@ function excluir(){
     for(let i = 0; i < cadastros.length; i++){
         if(cadastros[i].nome == sessionStorage.getItem("CadNome")){
             cadastros.splice(i, 1)
-            if(i >= mes){
+            if(i >= mes && mes > 0){
                 mes--
                 sessionStorage.setItem("Mes", mes)
             }

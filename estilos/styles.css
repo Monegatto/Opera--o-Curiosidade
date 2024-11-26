@@ -20,9 +20,9 @@ html, body{
 body{
     background-color: var(--corFundo);
     display: grid;
-    grid-template-columns: 70% 30%;
+    grid-template-columns: 70% auto;
     grid-template-rows: 100px auto;
-    position: relative;
+    font-size: 90%;
 }
 a{
     text-decoration: none;
@@ -49,6 +49,7 @@ header > input{
     background-color: var(--corFundo);
     padding: 10px;
     border-radius: 5px;
+    width: 160px;
 }
 header > section{
     display: flex;
@@ -86,7 +87,8 @@ aside > h1{
     height: 60px;
     margin-top: 5px;
     padding: 0px 15px;
-    font-size: 0.7em;
+    font-size: 0.9em;
+    
 }
 aside > h1.logo::before{
     content: 'OC ';
@@ -129,8 +131,8 @@ main{
     grid-row: 2/4;
 
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: auto auto auto;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, auto);
     column-gap: 20px;
 }
 main > span.menuCards{
@@ -155,6 +157,12 @@ div.card{
     margin-bottom: 20px;
     width: 30%;
 }
+div.card > p{
+    text-align: end;
+    color: gray;
+    padding: 0px 10px 10px 0px;
+}
+
 #total, #mês, #rev{
     text-align: center;
     padding: 20px;
@@ -168,11 +176,6 @@ section#mês{
 }
 section#rev{
     color: rgb(150, 0, 0);
-}
-div.card > p{
-    text-align: end;
-    color: gray;
-    padding: 0px 10px 10px 0px;
 }
 
 div.conteudo{
@@ -245,8 +248,12 @@ tr:hover > td{
 }
 
 @media screen and (min-width: 600px) {
+    html, body{
+        overflow-x: visible;
+    }
     body{
         grid-template-columns: 350px auto;
+        font-size: 100%;
     }
     header{
         grid-column: 2/3;
@@ -279,7 +286,10 @@ tr:hover > td{
     main > span.menuCards{
         display: none;
     }
-    div.card{ 
+    div.cards{
+        display: flex;
+    }
+    div.card{
         background-color: white;
         margin-bottom: 20px;
         width: 32%;
