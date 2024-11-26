@@ -2,11 +2,17 @@
  * Quando a tela for carregada o usuário logado aparece no topo da tela e diversas funções são aplicadas a componentes da pagina
  */
 window.addEventListener('load', () => {
-    document.querySelector("p.userLogado").innerHTML = sessionStorage.getItem("Logado")
+    let userLogado = document.querySelector("p.userLogado")
+    if(userLogado)
+        userLogado.innerHTML = sessionStorage.getItem("Logado")
 
-    document.querySelector("input#ipesquisa").addEventListener('keyup', pesquisar)
+    let pesquisa = document.querySelector("input#ipesquisa")
+    if(pesquisa)
+        pesquisa.addEventListener('keyup', pesquisar)
 
-    document.querySelector("span.menuAside").addEventListener('click', menuAside)
+    let menuAside = document.querySelector("span.menuAside")
+    if(menuAside)
+        menuAside.addEventListener('click', menuAside)
 
     let cards = document.querySelector("span.menuCards")
     if(cards)
