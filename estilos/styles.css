@@ -211,7 +211,9 @@ button.novoCadastro > a{
     padding: 12px 0px;
 }
 button.imprimirLista{
-    display: none;
+    display: block;
+    background-color: rgba(0, 0, 128, 0.7);
+    cursor: pointer;
 }
 
 table{
@@ -246,6 +248,8 @@ td{
     text-overflow: ellipsis;
 }
 td > a{
+    display: block;
+    width: 100%;
     color: rgba(0, 0, 0, 0.6);
 }
 td.inativo{
@@ -297,11 +301,5 @@ td.inativo{
     #total, #mês, #rev{
         padding: 50px;
         font-size: 4em;
-    }
-
-    button.imprimirLista{
-        display: block;
-        background-color: rgba(0, 0, 128, 0.7);
-        cursor: pointer;
     }
 }

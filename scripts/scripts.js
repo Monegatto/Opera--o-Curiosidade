@@ -8,7 +8,9 @@ window.addEventListener('load', () => {
 
     document.querySelector("span.menuAside").addEventListener('click', menuAside)
 
-    document.querySelector("span.menuCards").addEventListener('click', menuCards)
+    let cards = document.querySelector("span.menuCards")
+    if(cards)
+        cards.addEventListener('click', menuCards)
 
     window.addEventListener('resize', mudouTamanho)
 })
