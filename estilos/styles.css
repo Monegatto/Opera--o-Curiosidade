@@ -239,6 +239,9 @@ td{
     overflow: hidden;
     text-overflow: ellipsis;
 }
+td > a{
+    color: rgba(0, 0, 0, 0.6);
+}
 td.inativo{
     color: rgba(128, 128, 128, 0.5);
 }
