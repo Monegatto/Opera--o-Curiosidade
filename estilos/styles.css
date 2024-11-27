@@ -246,6 +246,7 @@ td{
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    padding: 1em 0.5em;
 }
 td > a{
     display: block;
@@ -301,5 +302,9 @@ td.inativo{
     #total, #mês, #rev{
         padding: 50px;
         font-size: 4em;
+    }
+
+    td{
+        padding: 5px;
     }
 }
