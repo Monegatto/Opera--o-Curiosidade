@@ -162,7 +162,7 @@ let validaLogin = (users, femail, fsenha) => {
 function carregarUsers(){
     let users = JSON.parse(localStorage.getItem("Usuarios"))    //Busca a lista de usuários do sistema
     if(users == null)                                           //Se não existir lista de usuários, cria ela
-        localStorage.setItem("Usuarios", "[]")
+        localStorage.setItem("Usuarios", JSON.stringify([{"email":"luciano@gmail.com","senha":"123","nome":"Luciano Henrique"}])) //User padrão
     return users
 }
 
@@ -192,12 +192,16 @@ function criarConta(){
     }
 
     let fnome = formData.get("nome")
+    if(fnome == ""){
+        window.alert("Você precisa fornecer um nome de usuário para exibição")
+        return false
+    }
 
     let novaConta = {email: femail, senha: fsenha, nome: fnome}
     users.push(novaConta)
     localStorage.setItem("Usuarios", JSON.stringify(users))
 
-    setTimeout(() => window.location.replace("./home.html"))
+    setTimeout(() => window.location.replace("./login.html"))
 }
 
 /**
