@@ -10,9 +10,9 @@ window.addEventListener('load', () => {
     if(pesquisa)
         pesquisa.addEventListener('keyup', pesquisar)
 
-    let menuAside = document.querySelector("span.menuAside")
-    if(menuAside)
-        menuAside.addEventListener('click', menuAside)
+    let aside = document.querySelector("span.menuAside")
+    if(aside)
+        aside.addEventListener('click', menuAside)
 
     let cards = document.querySelector("span.menuCards")
     if(cards)
