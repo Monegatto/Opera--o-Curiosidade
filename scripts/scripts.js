@@ -10,14 +10,6 @@ window.addEventListener('load', () => {
     if(pesquisa)
         pesquisa.addEventListener('keyup', pesquisar)
 
-    let aside = document.querySelector("span.menuAside")
-    if(aside)
-        aside.addEventListener('click', menuAside)
-
-    let cards = document.querySelector("span.menuCards")
-    if(cards)
-        cards.addEventListener('click', menuCards)
-
     window.addEventListener('resize', mudouTamanho)
 })
 
@@ -63,14 +55,11 @@ function menuAside(){
     let aside = document.querySelector("aside")
     let header = document.querySelector("header")
     let main = document.querySelector("main")
-    let cards = document.querySelector("div.cards")
     if(aside.style.display == "flex"){
         aside.style.display = "none"
         header.style = "grid-column: 1/3;"
         main.style = "grid-column: 1/3;"
     }else{
-        if(cards)
-            cards.style.display = "none"
         aside.style.display = "flex"
         header.style = "grid-column: 2/3;"
         main.style = "grid-column: 2/3;"
@@ -82,13 +71,10 @@ function menuAside(){
  */
 function menuCards(){
     let cards = document.querySelector("div.cards")
-    let aside = document.querySelector("aside")
-    if(aside.style.display != "flex"){
-        if(cards.style.display == "flex")
-            cards.style.display = "none"
-        else
-            cards.style.display = "flex"
-    }
+    if(cards.style.display == "flex")
+        cards.style.display = "none"
+    else
+        cards.style.display = "flex"
 }
 
 /**
