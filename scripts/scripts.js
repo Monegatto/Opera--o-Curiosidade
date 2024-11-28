@@ -10,7 +10,16 @@ window.addEventListener('load', () => {
     if(pesquisa)
         pesquisa.addEventListener('keyup', pesquisar)
 
-    window.addEventListener('resize', mudouTamanho)
+    let aside = document.querySelector("span.menuAside")
+    if(aside){
+        aside.addEventListener('click', menuAside)
+        window.addEventListener('resize', mudouTamanho)
+    }
+
+    let cards = document.querySelector("span.menuCards")
+    if(cards)
+        cards.addEventListener('click', menuCards)
+
 })
 
 /**
