@@ -1,6 +1,3 @@
-/**
- * Quando a tela for carregada o usuário logado aparece no topo da tela e diversas funções são aplicadas a componentes da pagina
- */
 window.addEventListener('load', () => {
     let userLogado = document.querySelector("p.userLogado")
     if(userLogado)
@@ -22,9 +19,6 @@ window.addEventListener('load', () => {
 
 })
 
-/**
- * Função de pesquisa na tabela de cadastros
- */
 function pesquisar(){
     let termo = document.querySelector("input#ipesquisa").value.toUpperCase()
     let tabela = document.querySelector("tbody")
@@ -57,9 +51,6 @@ loopCell:
     }
 }
 
-/**
- * Função que esconde o aside no celular
- */
 function menuAside(){
     let aside = document.querySelector("aside")
     let header = document.querySelector("header")
@@ -75,9 +66,6 @@ function menuAside(){
     }
 }
 
-/**
- * Função que esconde os cards no celular
- */
 function menuCards(){
     let cards = document.querySelector("div.cards")
     if(cards.style.display == "flex")
@@ -86,9 +74,6 @@ function menuCards(){
         cards.style.display = "flex"
 }
 
-/**
- * Função que altera a exibição do aside quando o tamanho da tela muda
- */
 function mudouTamanho(){
     let aside = document.querySelector("aside")
     let header = document.querySelector("header")
@@ -107,9 +92,6 @@ function mudouTamanho(){
     }
 }
 
-/**
- * Percorre todo a lista de nomes cadastrados e compara o nome de cada entrada com o nome recebido
- */
 let validaRepeticaoNome = (cadastros, fnome) => {
     for(let i = 0; i < cadastros.length; i++){
         if(cadastros[i].nome == fnome)
@@ -118,9 +100,6 @@ let validaRepeticaoNome = (cadastros, fnome) => {
     return false
 }
 
-/**
- * Percorre a lista de usuários do sistema e compara o email de cada um com o email recebido
- */
 let validaRepeticaoEmail = (users, femail) => {
     for(let i = 0; i < users.length; i++){
         if(users[i].email == femail)
@@ -129,18 +108,12 @@ let validaRepeticaoEmail = (users, femail) => {
     return false
 }
 
-/**
- * Valida o email recebido e retorna falso para inválido e verdadeiro para válido
- */
 let validaEmail = (femail) =>{
     if(!((/^[\w\.]+@([\w-]+\.)+[\w-]{2,4}$/).test(femail)))                //Verifica se o email inserido é valido
         return false
     return true
 }
 
-/**
- * Percorre toda a lista de usuários e verifica se a senha e email recebidos pertencem ao mesmo usuário
- */
 let validaLogin = (users, femail, fsenha) => {
     for(let i = 0; i < users.length; i++){
         if((users[i].email == femail) && (users[i].senha == fsenha)){
@@ -151,9 +124,6 @@ let validaLogin = (users, femail, fsenha) => {
     return false
 }
 
-/**
- * Busca a lista de usuários e a cria se ela não existir, depois a retorna
- */
 function carregarUsers(){
     let users = JSON.parse(localStorage.getItem("Usuarios"))    //Busca a lista de usuários do sistema
     if(users == null)                                           //Se não existir lista de usuários, cria ela
@@ -161,9 +131,6 @@ function carregarUsers(){
     return users
 }
 
-/**
- * Função de criar conta com validação para email
- */
 function criarConta(){
     let formData = new FormData(document.forms.formCadastro)
     let users = carregarUsers()
@@ -199,9 +166,6 @@ function criarConta(){
     setTimeout(() => window.location.replace("./login.html"))
 }
 
-/**
- * Função de login com validações para email e senha
- */
 function login(){
     let formData = new FormData(document.forms.formLogin)
     let users = carregarUsers()
@@ -226,9 +190,6 @@ function login(){
     setTimeout(() => window.location.replace("./home.html"))
 }
 
-/**
- * Busca a lista de cadastros e a cria se ela não existir, depois preenche a tabela com os dados dos colaboradores
- */
 function carregarCadastros(){
     let cadastros = JSON.parse(localStorage.getItem("Cadastros"))   //Busca a lista de cadastros no sistema
     if(cadastros == null)                                           //Se não existir lista de cadastros, cria ela
@@ -264,9 +225,6 @@ function carregarCadastros(){
     localStorage.setItem("Rev", rev)
 }
 
-/**
- * Função que preenche os dados dos cards de cadastros com valores baseados na atividade do sistema
- */
 function carregarCards(){
     let card = document.querySelectorAll("div.card")
     let cadastros = JSON.parse(localStorage.getItem("Cadastros"))
@@ -291,9 +249,6 @@ function carregarCards(){
     card[2].prepend(revCard)
 }
 
-/**
- * Função que cadastra novos colaboradores no sistema
- */
 function cadastrar(){
     let formData = new FormData(document.forms.formCadastro)
     let cadastros = JSON.parse(localStorage.getItem("Cadastros"))
@@ -348,18 +303,12 @@ function cadastrar(){
     setTimeout(() => window.location.replace("./home.html"))
 }
 
-/**
- *  Função que armazena na sessão o nome e email (valores únicos) do usuário que será editado ou excluído
- */ 
 function setCad(){
     sessionStorage.setItem("CadNome", this.children[0].innerHTML)
     sessionStorage.setItem("CadEmail", this.children[1].innerHTML)
     window.location.href = "./editarCadastro.html"
 }
 
-/**
- * Função que atribui os valores do colaborador aos campos do formulário para edição
- */
 function getCad(){
     let cadastros = JSON.parse(localStorage.getItem("Cadastros"))           //Busca a lista de cadastros no sistema
     let editavel                                                            //Cadastrado que vai ser editado
@@ -378,9 +327,6 @@ function getCad(){
     document.querySelector("input#iativo").checked = editavel.ativo  //O input checkbox possui comportamento diferente e portanto deve ser tratado diferentemente
 }
 
-/**
- * Função que edita os cadastros no sistema
- */
 function editar(){
     let formData = new FormData(document.forms.formCadastro)
     let cadastros = JSON.parse(localStorage.getItem("Cadastros"))
@@ -438,9 +384,6 @@ function editar(){
     setTimeout(() => window.location.replace("./home.html"))
 }
 
-/**
- * Função que exclui um dos cadastros no sistema
- */
 function excluir(){
     let mes = sessionStorage.getItem("Mes")
     let cadastros = JSON.parse(localStorage.getItem("Cadastros"))
