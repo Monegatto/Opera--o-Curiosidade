@@ -2,10 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using api.Mappers;
 using api.DTOs.Cadastros;
+using Microsoft.AspNetCore.Authorization;
 
 namespace api.Controllers;
 
-[Route("api/controller")]
+[Route("api/cadastros")]
 [ApiController]
 public class CadastrosController : ControllerBase{
 	private readonly ICadastroRepository _cadastroRepo;
@@ -26,6 +27,7 @@ public class CadastrosController : ControllerBase{
 	}
 
 	[HttpPost]
+	[Authorize]
 	public async Task<IActionResult> Create([FromBody] CreateCadastroDTO cadastroDTO) {
 		
 		if(!ModelState.IsValid) {
@@ -39,6 +41,7 @@ public class CadastrosController : ControllerBase{
 
 	[HttpPut]
 	[Route("{id:int}")]
+	[Authorize]
 	public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateCadastroDTO cadastroDTO) {
 
 		if(!ModelState.IsValid) {
@@ -54,6 +57,7 @@ public class CadastrosController : ControllerBase{
 
 	[HttpDelete]
 	[Route("{id:int}")]
+	[Authorize]
 	public async Task<IActionResult> Delete([FromRoute] int id) {
 
 		if(!ModelState.IsValid) {
