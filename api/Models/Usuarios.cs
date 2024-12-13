@@ -3,5 +3,6 @@
 namespace api.Models;
 
 public class Usuarios : IdentityUser{
-	
+	public string DisplayName { get; set; }
+
 }

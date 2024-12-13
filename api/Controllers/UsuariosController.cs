@@ -1,11 +1,11 @@
-﻿using api.DTOs.Usuarios;
-using api.Models;
-using Microsoft.AspNetCore.Mvc;
-using api.Mappers;
-using Microsoft.AspNetCore.Identity;
+﻿using System.Text.RegularExpressions;
+using api.DTOs.Usuarios;
 using api.Interfaces;
-using Microsoft.EntityFrameworkCore;
+using api.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace api.Controllers;
 
@@ -20,7 +20,7 @@ public class UsuariosController : ControllerBase{
 		_tokenService = tokenService;
 		_signInManager = signInManager;
 	}
-
+	
 	[HttpPost("login")]
 	public async Task<IActionResult> Login(LoginDTO loginDTO) {
 
@@ -29,20 +29,18 @@ public class UsuariosController : ControllerBase{
 		}
 
 		var user = await _usuarioManager.Users.FirstOrDefaultAsync(x => x.Email == loginDTO.Email);
-
 		if(user == null) {
-			return Unauthorized("Email não encontrado no sistema");
+			return Unauthorized("Email não encontrado no sistema!");
 		}
 
 		var result = await _signInManager.CheckPasswordSignInAsync(user, loginDTO.Senha, false);
-
 		if(!result.Succeeded) {
-			return Unauthorized("Senha incorreta");
+			return Unauthorized("Senha incorreta, tente novamente");
 		}
 
 		return Ok(
 			new NewUserDTO {
-				Nome = user.UserName,
+				Nome = user.DisplayName,
 				Email = user.Email,
 				Token = _tokenService.CreateToken(user)
 			}
@@ -57,9 +55,14 @@ public class UsuariosController : ControllerBase{
 				return BadRequest(ModelState);
 			}
 			
+			if(!Regex.IsMatch(registerDTO.Email, @"^[\w\.]+@([\w-]+\.)+[\w-]{2,4}$")) {
+				return BadRequest("Email inválido, tente cadastrar outro");
+			}
+
 			var user = new Usuarios {
-				UserName = registerDTO.Nome,
-				Email = registerDTO.Email
+				DisplayName = registerDTO.Nome,
+				Email = registerDTO.Email,
+				UserName = registerDTO.Email.Split("@")[0]
 			};
 
 			var createdUser = await _usuarioManager.CreateAsync(user, registerDTO.Senha);
@@ -69,7 +72,7 @@ public class UsuariosController : ControllerBase{
 				if(roleResult.Succeeded) {
 					return Ok(
 						new NewUserDTO {
-							Nome = user.UserName,
+							Nome = user.DisplayName,
 							Email = user.Email,
 							Token = _tokenService.CreateToken(user)
 						}

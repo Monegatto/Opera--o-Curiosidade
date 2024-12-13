@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace api.DTOs.Usuarios;
+﻿namespace api.DTOs.Usuarios;
 
 public class NewUserDTO {
 	public string Nome { get; set; } = string.Empty;
