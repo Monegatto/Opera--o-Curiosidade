@@ -1,7 +1,7 @@
-﻿namespace api.Models;
+﻿using Microsoft.AspNetCore.Identity;
 
-public class Usuarios {
-	public string Nome { get; set; } = string.Empty;
-	public string Email { get; set; } = string.Empty;
-	public string Senha { get; set; } = string.Empty;
+namespace api.Models;
+
+public class Usuarios : IdentityUser{
+	
 }
